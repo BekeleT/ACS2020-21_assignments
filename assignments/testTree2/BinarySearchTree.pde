@@ -1,0 +1,56 @@
+class BinarySearchTree {
+
+  private TreeNode root;
+  private TreeNode current;
+
+  public BinarySearchTree() {
+    root=null;
+  }
+  //the plan was to complete the program and then replace it with the food questionare but i couldn't get it to work
+  TreeNode buildTree() {
+    
+    root=new TreeNode("Do you like rural (left) or cities (right)?");
+    // was going to be "does it contain meat including fish (left) or not (right)
+    //level one
+    root.setLeft(new TreeNode("big (left)  or small (right)?"));
+    root.setRight(new TreeNode("big (left) or small (right)?"));
+    //was going to be "is it eaten cooked (left) or raw (right)
+    //level two
+    root.getLeft().setLeft(new TreeNode("warm (left )or cold (right)?"));
+    root.getRight().setRight(new TreeNode("warm (left )or cold (right)?"));
+    root.getLeft().setRight(new TreeNode("warm (left )or cold (right)?"));
+    root.getRight().setLeft(new TreeNode("warm (left )or cold (right)?"));
+    //same question for this.
+
+    //level three left sub tree
+    root.getLeft().getLeft().setLeft(new TreeNode("Texas El Paso!"));
+    root.getLeft().getLeft().setRight(new TreeNode("U of Iowa!"));
+    root.getLeft().getRight().setLeft(new TreeNode("Stetson in Florida!"));
+    root.getLeft().getRight().setRight(new TreeNode("Coe College in Iowa!"));
+
+    //level three right sub tree
+    root.getRight().getRight().setRight(new TreeNode("Augsburg in Minneapolis!"));
+    root.getRight().getRight().setLeft(new TreeNode("U of Arizona!"));
+    root.getRight().getLeft().setLeft(new TreeNode("U of Austin, TX!"));
+    root.getRight().getLeft().setRight(new TreeNode("UMN!"));
+    current=root;
+    return current;
+  }
+
+  TreeNode returnTree() {
+    current=root;
+    return root;
+  }
+
+  private void inorder() {
+    inorder(root);
+  }
+
+  public void inorder(TreeNode t) {
+    if (t!=null) {
+      inorder(t.getLeft());
+      System.out.println(t.getValue());
+      inorder(t.getRight());
+    }
+  }
+}
